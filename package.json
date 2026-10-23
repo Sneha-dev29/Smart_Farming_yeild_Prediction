@@ -1,0 +1,19 @@
+{
+  "name": "smart-farming-ai",
+  "version": "1.0.0",
+  "description": "Smart Farming – AI Powered Crop Yield Prediction & Farming Assistant for Indian Farmers",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "agritech",
+    "crop-yield-prediction",
+    "smart-farming",
+    "indian-agriculture",
+    "machine-learning"
+  ],
+  "author": "Smart Farming AI Team",
+  "license": "MIT"
+}
