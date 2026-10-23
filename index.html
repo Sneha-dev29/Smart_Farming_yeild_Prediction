@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌾 Smart Farming AI - AI Powered Crop Yield Prediction & Farming Assistant</title>
+  <meta name="description" content="Predict Better. Grow Better. Earn Better. Modern, multilingual AI crop yield prediction and smart farming assistant designed for Indian farmers.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            nature: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16',
+            },
+            earth: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              500: '#f59e0b',
+              700: '#b45309',
+              900: '#78350f',
+            }
+          },
+          borderRadius: {
+            '20': '20px',
+            '24': '24px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#fbfbf8] dark:bg-[#0b130e] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+
+  <!-- Top Announcement Bar (Agri Advisory) -->
+  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-amber-700 text-white text-xs font-semibold py-2 px-4 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+      <div class="flex items-center space-x-2">
+        <span class="animate-pulse inline-block w-2 h-2 rounded-full bg-amber-300"></span>
+        <span data-i18n="trustedBadge">🇮🇳 Designed for Indian Farmers • ICAR & IMD Aligned Data</span>
+      </div>
+      <div class="flex items-center space-x-4 text-xs font-medium">
+        <a href="tel:18001801551" class="hover:underline flex items-center space-x-1">
+          <span>📞 Kisan Helpline: <strong>1800-180-1551</strong></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-emerald-100 dark:border-emerald-950/60 transition-colors no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#hero" class="flex items-center space-x-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-nature flex items-center justify-center text-white text-2xl shadow-lg shadow-emerald-700/20 group-hover:scale-105 transition-transform">
+            🌾
+          </div>
+          <div>
+            <div class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center space-x-1.5 font-display">
+              <span data-i18n="appName">Smart Farming AI</span>
+            </div>
+            <div class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 -mt-0.5" data-i18n="appSubtitle">
+              AI Powered Crop Yield Prediction & Farming Assistant
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center space-x-5 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <a href="#hero" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="#prediction-wizard" class="hover:text-emerald-600 dark:hover:text-emerald-400 text-emerald-700 dark:text-emerald-400 font-bold transition-colors" data-i18n="navPredict">Predict Crop</a>
+          <a href="#dashboard" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navDashboard">Dashboard</a>
+          <a href="#weather" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navWeather">Weather</a>
+          <a href="#schemes" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navSchemes">Government Schemes</a>
+          <a href="#croplib" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navCropLib">Crop Library</a>
+          <a href="#doctor" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navDoctor">AI Doctor</a>
+          <a href="#mandi" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navMandi">Mandi Rates</a>
+          <a href="#history" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navHistory">History</a>
+          <a href="#analytics" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navAnalytics">Analytics</a>
+          <a href="#about" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navAbout">About</a>
+          <a href="#contact" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-i18n="navContact">Contact</a>
+        </nav>
+
+        <!-- Right Action Controls (Language, Theme, Contrast, Voice, Notification) -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          
+          <!-- Multilingual Language Selector -->
+          <div class="relative">
+            <select id="language-selector" class="bg-emerald-50 dark:bg-slate-800 border border-emerald-200 dark:border-emerald-800 text-slate-800 dark:text-slate-100 text-xs font-bold rounded-xl py-2 px-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer shadow-sm">
+              <option value="en">English (English)</option>
+              <option value="hi">हिंदी (Hindi)</option>
+              <option value="mr">मराठी (Marathi)</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+              <option value="te">తెలుగు (Telugu)</option>
+              <option value="kn">ಕನ್ನಡ (Kannada)</option>
+              <option value="gu">ગુજરાતી (Gujarati)</option>
+              <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+            </select>
+          </div>
+
+          <!-- Voice Mic Assistant Button -->
+          <button id="btn-voice-nav" title="Voice Search / Assistant" class="p-2.5 rounded-xl bg-emerald-100/70 hover:bg-emerald-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-emerald-800 dark:text-emerald-300 transition-all shadow-sm">
+            🎙️
+          </button>
+
+          <!-- Notifications Bell -->
+          <div class="relative group">
+            <button class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shadow-sm relative">
+              🔔
+              <span class="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+            </button>
+            <!-- Dropdown Alert Preview -->
+            <div class="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 p-3 hidden group-hover:block transition-all z-50">
+              <div class="font-bold text-xs text-slate-800 dark:text-slate-100 pb-2 border-b border-slate-100 dark:border-slate-700">Farm Alerts & Reminders</div>
+              <div class="space-y-2 mt-2 text-xs">
+                <div class="p-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-200">
+                  🌧️ <strong>Rain Alert:</strong> Showers predicted in 48h. Postpone urea top dressing.
+                </div>
+                <div class="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200">
+                  🏛️ <strong>PM-KISAN:</strong> 17th Installment DBT disbursed. Check passbook.
+                </div>
+                <div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200">
+                  🚜 <strong>Advisory:</strong> Ideal soil moisture for Rabi Wheat sowing in Punjab & Haryana.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark Mode Toggle -->
+          <button id="dark-mode-toggle" title="Toggle Dark/Light Mode" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shadow-sm">
+            🌓
+          </button>
+
+          <!-- High Contrast Accessibility Toggle -->
+          <button id="contrast-toggle" title="High Contrast Mode for Farmers" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shadow-sm hidden sm:block">
+            👁️
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-nav-menu" class="hidden xl:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-sm font-semibold">
+        <a href="#hero" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navHome">Home</a>
+        <a href="#prediction-wizard" class="block py-2 px-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 font-bold" data-i18n="navPredict">Predict Crop</a>
+        <a href="#dashboard" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navDashboard">Dashboard</a>
+        <a href="#weather" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navWeather">Weather</a>
+        <a href="#schemes" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navSchemes">Government Schemes</a>
+        <a href="#croplib" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navCropLib">Crop Library</a>
+        <a href="#doctor" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navDoctor">AI Doctor</a>
+        <a href="#mandi" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navMandi">Mandi Rates</a>
+        <a href="#history" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navHistory">History</a>
+        <a href="#analytics" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navAnalytics">Analytics</a>
+        <a href="#about" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navAbout">About</a>
+        <a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800" data-i18n="navContact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-subtle">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Hero Left Content -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            
+            <!-- Tagline Pills -->
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-700/50 shadow-sm">
+              <span class="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider">
+                <span data-i18n="tagline1">Predict Better.</span> • 
+                <span data-i18n="tagline2">Grow Better.</span> • 
+                <span data-i18n="tagline3">Earn Better.</span>
+              </span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight font-display" data-i18n="heroHeadline">
+              Predict Your Crop Yield Using AI
+            </h1>
+
+            <!-- Subtext -->
+            <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal" data-i18n="heroSubtext">
+              Enter your farm details and get instant crop yield prediction with farming recommendations.
+            </p>
+
+            <!-- Large Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#prediction-wizard" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg shadow-xl shadow-emerald-700/30 hover:shadow-emerald-700/50 hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2 group">
+                <span data-i18n="btnPredict">✅ Predict Yield</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-lg shadow-sm hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2">
+                <span data-i18n="btnLearn">🌱 Learn More</span>
+              </a>
+            </div>
+
+            <!-- Farmer Trust Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+              <div class="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-emerald-100 dark:border-emerald-950/60">
+                <div class="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 font-display">50,000+</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" data-i18n="statFarmers">Happy Farmers</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-emerald-100 dark:border-emerald-950/60">
+                <div class="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 font-display">120,000+</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" data-i18n="statHectares">Hectares</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-emerald-100 dark:border-emerald-950/60">
+                <div class="text-2xl font-extrabold text-amber-600 dark:text-amber-400 font-display">₹4.2 Cr</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" data-i18n="statIncome">Added Profit</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-emerald-100 dark:border-emerald-950/60">
+                <div class="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 font-display">94%</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" data-i18n="statAccuracy">Accuracy</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero Right Illustration: Farmer + Farm + Tractor + Crops + AI Tech -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              
+              <!-- Background Ambient Glow -->
+              <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-amber-500/20 to-emerald-600/20 rounded-3xl blur-2xl"></div>
+
+              <!-- Main Card Container -->
+              <div class="relative rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-emerald-200 dark:border-emerald-800 p-6 shadow-2xl overflow-hidden">
+                
+                <!-- SVG Artistic AgriTech Canvas -->
+                <div class="w-full h-80 rounded-2xl bg-gradient-to-b from-sky-100 via-emerald-50 to-emerald-200 dark:from-slate-800 dark:via-emerald-950 dark:to-slate-900 relative overflow-hidden flex items-end justify-center">
+                  
+                  <!-- Sun & Cloud -->
+                  <div class="absolute top-4 right-6 text-4xl animate-bounce" style="animation-duration: 6s;">☀️</div>
+                  <div class="absolute top-8 left-6 text-2xl opacity-80">☁️</div>
+
+                  <!-- AI Tech Sensor Grid Overlay -->
+                  <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#16a34a" stroke-width="1"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                  </svg>
+
+                  <!-- Drone / AI Satellite -->
+                  <div class="absolute top-10 left-1/3 text-2xl animate-float">🛸</div>
+
+                  <!-- Farm Field Hills -->
+                  <svg class="absolute bottom-0 w-full" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 150L0 70C60 50 140 90 200 65C260 40 340 75 400 50L400 150Z" fill="#15803d" />
+                    <path d="M0 150L0 95C70 80 150 115 220 90C290 65 350 90 400 80L400 150Z" fill="#166534" />
+                    <!-- Furrows -->
+                    <path d="M20 150C80 110 180 110 240 150" stroke="#fef08a" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+                    <path d="M120 150C170 120 260 120 320 150" stroke="#fef08a" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+                  </svg>
+
+                  <!-- Farmer, Tractor & Crops Composite Characters -->
+                  <div class="relative z-10 flex items-end justify-between w-full px-6 pb-2">
+                    <!-- Farmer Character -->
+                    <div class="flex flex-col items-center">
+                      <div class="text-6xl drop-shadow-md">👨‍🌾</div>
+                      <span class="text-[10px] font-bold bg-white/90 dark:bg-slate-800 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded-full shadow-sm mt-1">Indian Farmer</span>
+                    </div>
+
+                    <!-- Crops Cluster -->
+                    <div class="flex space-x-1 text-3xl pb-1 drop-shadow-sm">
+                      <span>🌾</span>
+                      <span class="text-4xl -mt-2">🌾</span>
+                      <span>🌽</span>
+                      <span>🌱</span>
+                    </div>
+
+                    <!-- Modern Tractor -->
+                    <div class="flex flex-col items-center">
+                      <div class="text-5xl drop-shadow-md">🚜</div>
+                      <span class="text-[10px] font-bold bg-white/90 dark:bg-slate-800 text-slate-800 dark:text-slate-300 px-2 py-0.5 rounded-full shadow-sm mt-1">Smart Agri</span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Floating Live AI Card 1 -->
+                <div class="absolute -top-3 -left-3 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-xl border border-emerald-100 dark:border-emerald-800 flex items-center space-x-2.5 animate-pulse-subtle">
+                  <div class="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-lg">
+                    🌾
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100">Wheat (Punjab)</div>
+                    <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold">4.85 Tons/Ha • 94% Conf.</div>
+                  </div>
+                </div>
+
+                <!-- Floating Live AI Card 2 -->
+                <div class="absolute -bottom-3 -right-3 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-xl border border-amber-100 dark:border-amber-800 flex items-center space-x-2.5">
+                  <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg">
+                    💰
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100">Estimated Profit</div>
+                    <div class="text-[10px] text-amber-600 dark:text-amber-400 font-extrabold">₹3,48,000 / Season</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Farmer Dashboard Overview -->
+    <section id="dashboard" class="py-16 bg-white dark:bg-slate-900 border-y border-emerald-50 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider mb-1">
+              Field Monitor
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="dashTitle">
+              Farmer Quick Dashboard
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="dashSubtitle">
+              Today's farm weather, advisory and crop health at a glance
+            </p>
+          </div>
+          <a href="#prediction-wizard" class="inline-flex items-center space-x-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+            <span>Start New Crop Prediction</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- Dashboard Cards Grid (Weather, Rain, Temp, Humidity, Status, Previous, Subsidies, Advisory) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          
+          <!-- Card 1: Today's Weather -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardTodayWeather">Today's Weather</span>
+              <span class="text-2xl">☀️</span>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white font-display">28°C</div>
+              <div class="text-xs font-semibold text-emerald-700 dark:text-emerald-400 mt-0.5">Clear Sky • Mild Breeze</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+              Ludhiana, Punjab
+            </div>
+          </div>
+
+          <!-- Card 2: Expected Rain -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardExpectedRain">Expected Rain</span>
+              <span class="text-2xl">🌧️</span>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-blue-600 dark:text-blue-400 font-display">15%</div>
+              <div class="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">0.5 mm in next 24 hrs</div>
+            </div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 font-semibold">
+              ✓ Good for Field Sowing
+            </div>
+          </div>
+
+          <!-- Card 3: Temperature Range -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardTemp">Temperature</span>
+              <span class="text-2xl">🌡️</span>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-amber-600 dark:text-amber-400 font-display">17° - 29°C</div>
+              <div class="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Normal Rabi Range</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+              Comfortable Growing Temp
+            </div>
+          </div>
+
+          <!-- Card 4: Humidity -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardHumidity">Humidity</span>
+              <span class="text-2xl">💧</span>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400 font-display">58%</div>
+              <div class="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Optimal Foliar Moisture</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+              Low Fungal Infection Risk
+            </div>
+          </div>
+
+          <!-- Card 5: Prediction Status -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardPredStatus">Prediction Status</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">Active</span>
+            </div>
+            <div>
+              <div id="dash-status-crop" class="text-lg font-black text-slate-900 dark:text-white font-display">Wheat (Ludhiana)</div>
+              <div id="dash-status-yield" class="text-sm font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">4.92 Tons/Ha</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between">
+              <span>Estimated:</span>
+              <span id="dash-status-income" class="font-bold text-slate-700 dark:text-slate-200">₹4,05,072</span>
+            </div>
+          </div>
+
+          <!-- Card 6: Previous Predictions -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardPrevPredictions">Previous Predictions</span>
+              <span class="text-2xl">📁</span>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white font-display">4 Saved</div>
+              <div class="text-xs font-semibold text-slate-500 mt-0.5">Wheat, Soybean, Cotton, Rice</div>
+            </div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 font-bold">
+              <a href="#history" class="hover:underline" data-i18n="viewAll">View All →</a>
+            </div>
+          </div>
+
+          <!-- Card 7: Government Subsidies Spotlight -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="cardGovtSubsidies">Government Subsidies</span>
+              <span class="text-2xl">🏛️</span>
+            </div>
+            <div>
+              <div class="text-sm font-black text-slate-900 dark:text-white font-display">PM-KISAN & Drip Subsidy</div>
+              <div class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">Up to 55% Micro-irrigation</div>
+            </div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 font-bold">
+              <a href="#schemes" class="hover:underline">Explore Schemes →</a>
+            </div>
+          </div>
+
+          <!-- Card 8: Daily Crop Advisory -->
+          <div class="glass-card p-5 glass-card-hover flex flex-col justify-between bg-emerald-50/50 dark:bg-emerald-950/20">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300" data-i18n="cardCropAdvisory">Crop Advisory</span>
+              <span class="text-2xl">💡</span>
+            </div>
+            <div>
+              <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium" data-i18n="advisoryText">
+                Moisture levels optimal for Rabi top-dressing. Delay urea spray if rain alert sounds.
+              </p>
+            </div>
+            <div class="text-[11px] text-emerald-700 dark:text-emerald-400 mt-3 pt-2 border-t border-emerald-100 dark:border-emerald-900 font-bold">
+              ICAR Agronomy Bulletin
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Feature: Crop Yield Prediction (Step-by-Step Form) -->
+    <section id="prediction-wizard" class="py-20 bg-[#f8faf7] dark:bg-[#0d1712] relative overflow-hidden transition-colors">
+      <div id="wizard-container" class="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <!-- Header -->
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-3">
+            🌾 Core Feature
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="wizardTitle">
+            Step-by-Step Crop Yield Prediction
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-xl mx-auto" data-i18n="wizardSubtitle">
+            Answer simple questions about your field. No technical knowledge required.
+          </p>
+
+          <!-- Quick Demo Prefill Button -->
+          <div class="mt-4">
+            <button id="btn-prefill-demo" type="button" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-amber-100 hover:bg-amber-200 dark:bg-amber-950/60 dark:hover:bg-amber-900/80 text-amber-900 dark:text-amber-200 text-xs font-bold transition-all shadow-sm">
+              <span data-i18n="btnPrefillDemo">⚡ Prefill Sample (Wheat, Punjab)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wizard Box Container -->
+        <div class="rounded-3xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/50 shadow-2xl overflow-hidden p-6 sm:p-10">
+          
+          <!-- Progress Bar Header -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">
+              <span class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span><span data-i18n="stepIndicator">Step</span> <span id="wizard-step-counter">1 / 12</span></span>
+              </span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">100% Free & Instant</span>
+            </div>
+            <!-- Bar -->
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-3 overflow-hidden">
+              <div id="wizard-progress-bar" class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-3 rounded-full transition-all duration-300" style="width: 8.33%;"></div>
+            </div>
+          </div>
+
+          <!-- Wizard Steps (1 to 12) -->
+          <div class="min-h-[320px] flex flex-col justify-center">
+
+            <!-- Step 1: Select State -->
+            <div id="wizard-step-1" class="wizard-step active">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step1Title">Select State</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step1Desc">Where is your agricultural farm located?</p>
+              </div>
+              <div class="mt-6">
+                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-2">Indian State / Union Territory</label>
+                <select id="input-state" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-lg font-bold focus:border-emerald-500 focus:outline-none transition-colors cursor-pointer shadow-sm">
+                  <!-- Dynamically populated -->
+                </select>
+                <p class="text-xs text-slate-400 mt-2">📍 Selects state-level agro-climatic zone parameters.</p>
+              </div>
+            </div>
+
+            <!-- Step 2: Select District -->
+            <div id="wizard-step-2" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step2Title">Select District</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step2Desc">Choose your local district for agro-climatic precision</p>
+              </div>
+              <div class="mt-6">
+                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-2">District</label>
+                <select id="input-district" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-lg font-bold focus:border-emerald-500 focus:outline-none transition-colors cursor-pointer shadow-sm">
+                  <!-- Dynamically populated based on state -->
+                </select>
+                <p class="text-xs text-slate-400 mt-2">🎯 Refines rainfall, soil texture, and nearest APMC mandi benchmark.</p>
+              </div>
+            </div>
+
+            <!-- Step 3: Select Crop -->
+            <div id="wizard-step-3" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step3Title">Select Crop</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step3Desc">Which crop are you planning to cultivate or assess?</p>
+              </div>
+              <input type="hidden" id="selected-crop-id" value="wheat">
+              <div id="crop-selector-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[340px] overflow-y-auto pr-1">
+                <!-- Dynamically populated with crop cards -->
+              </div>
+            </div>
+
+            <!-- Step 4: Season -->
+            <div id="wizard-step-4" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step4Title">Crop Season</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step4Desc">Select the agricultural growing season</p>
+              </div>
+              <input type="hidden" id="selected-season" value="Rabi">
+              <div id="season-selector-group" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <div class="selectable-card p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center shadow-sm" data-value="Kharif">
+                  <span class="text-4xl block mb-2">🌧️</span>
+                  <div class="font-bold text-base text-slate-800 dark:text-slate-100" data-i18n="seasonKharif">Kharif (Monsoon)</div>
+                  <div class="text-xs text-slate-500 mt-1">June - October</div>
+                </div>
+                <div class="selectable-card selected p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center shadow-sm" data-value="Rabi">
+                  <span class="text-4xl block mb-2">❄️</span>
+                  <div class="font-bold text-base text-slate-800 dark:text-slate-100" data-i18n="seasonRabi">Rabi (Winter)</div>
+                  <div class="text-xs text-slate-500 mt-1">October - March</div>
+                </div>
+                <div class="selectable-card p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center shadow-sm" data-value="Zaid">
+                  <span class="text-4xl block mb-2">☀️</span>
+                  <div class="font-bold text-base text-slate-800 dark:text-slate-100" data-i18n="seasonZaid">Zaid (Summer)</div>
+                  <div class="text-xs text-slate-500 mt-1">March - June</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Farm Area -->
+            <div id="wizard-step-5" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step5Title">Farm Area</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step5Desc">Enter total land area under cultivation</p>
+              </div>
+              <div class="mt-6 flex flex-col sm:flex-row gap-4 items-center">
+                <div class="w-full sm:w-2/3">
+                  <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-2">Land Area Number</label>
+                  <input type="number" id="input-farm-area" min="0.1" max="1000" step="0.5" value="2.5" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-2xl font-black focus:border-emerald-500 focus:outline-none transition-colors shadow-sm">
+                </div>
+                <div class="w-full sm:w-1/3">
+                  <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-2">Unit</label>
+                  <select id="input-area-unit" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-lg font-bold focus:border-emerald-500 focus:outline-none transition-colors cursor-pointer shadow-sm">
+                    <option value="Hectares" data-i18n="unitHa">Hectares</option>
+                    <option value="Acres" data-i18n="unitAcre">Acres</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex gap-2 mt-4">
+                <button type="button" onclick="document.getElementById('input-farm-area').value=1" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-emerald-100">1</button>
+                <button type="button" onclick="document.getElementById('input-farm-area').value=2.5" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-emerald-100">2.5</button>
+                <button type="button" onclick="document.getElementById('input-farm-area').value=5" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-emerald-100">5</button>
+                <button type="button" onclick="document.getElementById('input-farm-area').value=10" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-emerald-100">10</button>
+              </div>
+            </div>
+
+            <!-- Step 6: Soil Type -->
+            <div id="wizard-step-6" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step6Title">Soil Type</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step6Desc">What type of soil does your farmland possess?</p>
+              </div>
+              <input type="hidden" id="selected-soil-type" value="alluvial">
+              <div id="soil-selector-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[340px] overflow-y-auto pr-1">
+                <!-- Dynamically populated from agriData.soils -->
+              </div>
+            </div>
+
+            <!-- Step 7: Rainfall Slider -->
+            <div id="wizard-step-7" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step7Title">Expected Rainfall (mm)</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step7Desc">Seasonal rainfall expectation in millimeters</p>
+              </div>
+              <div class="mt-8 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-xs font-bold text-slate-500">200 mm (Low)</span>
+                  <span id="val-rainfall" class="text-3xl font-black text-emerald-600 dark:text-emerald-400 font-display">520 mm</span>
+                  <span class="text-xs font-bold text-slate-500">2500 mm (Heavy)</span>
+                </div>
+                <input type="range" id="slider-rainfall" min="200" max="2500" step="50" value="520" class="agri-slider">
+                <div class="flex justify-between text-[11px] text-slate-400 mt-3">
+                  <span>Dryland / Desert</span>
+                  <span>Average Indian Plains</span>
+                  <span>Coastal / High Rain</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 8: Temperature Slider -->
+            <div id="wizard-step-8" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step8Title">Average Temperature (°C)</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step8Desc">Mean growing season temperature</p>
+              </div>
+              <div class="mt-8 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-xs font-bold text-slate-500">10°C (Cold)</span>
+                  <span id="val-temperature" class="text-3xl font-black text-amber-600 dark:text-amber-400 font-display">24 °C</span>
+                  <span class="text-xs font-bold text-slate-500">45°C (Extreme)</span>
+                </div>
+                <input type="range" id="slider-temperature" min="10" max="45" step="1" value="24" class="agri-slider">
+                <div class="flex justify-between text-[11px] text-slate-400 mt-3">
+                  <span>Winter Vegetative</span>
+                  <span>Mild Temperate</span>
+                  <span>Peak Summer</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 9: Humidity Slider -->
+            <div id="wizard-step-9" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step9Title">Relative Humidity (%)</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step9Desc">Average atmospheric humidity level</p>
+              </div>
+              <div class="mt-8 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-xs font-bold text-slate-500">20% (Dry)</span>
+                  <span id="val-humidity" class="text-3xl font-black text-cyan-600 dark:text-cyan-400 font-display">60 %</span>
+                  <span class="text-xs font-bold text-slate-500">95% (Humid)</span>
+                </div>
+                <input type="range" id="slider-humidity" min="20" max="95" step="5" value="60" class="agri-slider">
+                <div class="flex justify-between text-[11px] text-slate-400 mt-3">
+                  <span>Dry Winds</span>
+                  <span>Comfort Zone</span>
+                  <span>Monsoon Saturated</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 10: Fertilizer Used -->
+            <div id="wizard-step-10" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step10Title">Fertilizer Used?</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step10Desc">Are you applying chemical (Urea/DAP) or organic manure?</p>
+              </div>
+              <input type="hidden" id="selected-fertilizer" value="yes">
+              <div id="fertilizer-selector-group" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                <div class="selectable-card selected p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center space-x-4 shadow-sm" data-value="yes">
+                  <span class="text-4xl">🌱</span>
+                  <div>
+                    <div class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="optYes">Yes, Applying</div>
+                    <div class="text-xs text-slate-500">NPK, Urea, DAP, or Compost applied</div>
+                  </div>
+                </div>
+                <div class="selectable-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center space-x-4 shadow-sm" data-value="no">
+                  <span class="text-4xl">🍂</span>
+                  <div>
+                    <div class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="optNo">No / Purely Natural</div>
+                    <div class="text-xs text-slate-500">No external nutrient supplements</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 11: Pesticide Used -->
+            <div id="wizard-step-11" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step11Title">Pesticide / Crop Protection Used?</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step11Desc">Are you applying prophylactic or curative pest controls?</p>
+              </div>
+              <input type="hidden" id="selected-pesticide" value="yes">
+              <div id="pesticide-selector-group" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                <div class="selectable-card selected p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center space-x-4 shadow-sm" data-value="yes">
+                  <span class="text-4xl">🛡️</span>
+                  <div>
+                    <div class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="optYes">Yes, Applying</div>
+                    <div class="text-xs text-slate-500">Neem oil, bio-sprays, or chemical protection</div>
+                  </div>
+                </div>
+                <div class="selectable-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center space-x-4 shadow-sm" data-value="no">
+                  <span class="text-4xl">🦗</span>
+                  <div>
+                    <div class="font-bold text-lg text-slate-900 dark:text-white" data-i18n="optNo">No / Purely Natural</div>
+                    <div class="text-xs text-slate-500">No pest control sprays used</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 12: Irrigation Method -->
+            <div id="wizard-step-12" class="wizard-step">
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="step12Title">Irrigation Method</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="step12Desc">How do you provide water to this crop?</p>
+              </div>
+              <input type="hidden" id="selected-irrigation" value="canal">
+              <div id="irrigation-selector-group" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+                <div class="selectable-card p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm" data-value="rainfed">
+                  <div class="text-3xl mb-1">🌧️</div>
+                  <div class="font-bold text-sm text-slate-800 dark:text-slate-100" data-i18n="irrigRainfed">Rainfed</div>
+                  <div class="text-xs text-slate-400">Purely dependent on rain</div>
+                </div>
+                <div class="selectable-card p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm" data-value="drip">
+                  <div class="text-3xl mb-1">💧</div>
+                  <div class="font-bold text-sm text-slate-800 dark:text-slate-100" data-i18n="irrigDrip">Drip Irrigation</div>
+                  <div class="text-xs text-emerald-600 font-bold">+25% Yield Booster</div>
+                </div>
+                <div class="selectable-card selected p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm" data-value="canal">
+                  <div class="text-3xl mb-1">🌊</div>
+                  <div class="font-bold text-sm text-slate-800 dark:text-slate-100" data-i18n="irrigCanal">Canal / River</div>
+                  <div class="text-xs text-slate-400">Gravity canal flow</div>
+                </div>
+                <div class="selectable-card p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm" data-value="sprinkler">
+                  <div class="text-3xl mb-1">🚿</div>
+                  <div class="font-bold text-sm text-slate-800 dark:text-slate-100" data-i18n="irrigSprinkler">Sprinkler</div>
+                  <div class="text-xs text-slate-400">Micro-sprinkler rain gun</div>
+                </div>
+                <div class="selectable-card p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm" data-value="tubewell">
+                  <div class="text-3xl mb-1">⚙️</div>
+                  <div class="font-bold text-sm text-slate-800 dark:text-slate-100" data-i18n="irrigTubewell">Borewell / Tubewell</div>
+                  <div class="text-xs text-slate-400">Underground groundwater</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Action Buttons (Back, Next, Predict Yield) -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-6 mt-8 flex items-center justify-between">
+            <button id="btn-wizard-back" type="button" class="px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-sm transition-colors" data-i18n="btnBack">
+              ← Back
+            </button>
+
+            <button id="btn-wizard-next" type="button" class="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-lg shadow-emerald-700/20 transition-all flex items-center space-x-2" data-i18n="btnNext">
+              <span>Next Step</span>
+              <span>→</span>
+            </button>
+
+            <!-- Final Action Large Button -->
+            <button id="btn-wizard-predict" type="button" class="hidden px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-black text-lg shadow-xl shadow-emerald-700/30 hover:scale-105 transition-all" data-i18n="btnPredictNow">
+              🚜 Calculate Predicted Yield
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Prediction Result View (Appears on prediction) -->
+    <section id="prediction-result-section" class="hidden py-16 bg-white dark:bg-slate-900 border-t-2 border-emerald-500 transition-colors">
+      <div id="prediction-result-view" class="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        <!-- Result Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-slate-200 dark:border-slate-800 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-2">
+              <span>🌾 AI Harvest Forecast Report</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="resTitle">
+              AI Crop Yield Prediction Report
+            </h2>
+            <p id="res-location-tag" class="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mt-1">
+              📍 Ludhiana, Punjab • Rabi Season
+            </p>
+          </div>
+
+          <!-- Utility Action Buttons (Read Aloud, PDF, Save) -->
+          <div class="flex flex-wrap items-center gap-3 no-print">
+            <button id="btn-read-aloud" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950 dark:hover:bg-emerald-900 text-emerald-900 dark:text-emerald-200 text-xs font-bold flex items-center space-x-2 transition-colors">
+              <span data-i18n="btnSpeechPlay">🔊 Read Prediction Aloud</span>
+            </button>
+            <button id="btn-stop-audio" type="button" class="hidden px-4 py-2.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-bold flex items-center space-x-2 transition-colors">
+              <span data-i18n="btnSpeechStop">⏹️ Stop Audio</span>
+            </button>
+            <button id="btn-download-pdf" type="button" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold flex items-center space-x-2 transition-colors">
+              <span data-i18n="btnDownloadPdf">📄 Download PDF Report</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Major Prediction Results 2-Column Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+          
+          <!-- Card 1: Large Predicted Yield Card with Gauge Meter -->
+          <div class="lg:col-span-7 rounded-3xl bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-slate-800 dark:via-slate-850 dark:to-emerald-950/40 p-8 border-2 border-emerald-300 dark:border-emerald-800 shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <span id="res-crop-icon" class="text-5xl">🌾</span>
+                  <div>
+                    <h3 id="res-crop-title" class="text-2xl font-black text-slate-900 dark:text-white font-display">Wheat</h3>
+                    <div id="res-area-tag" class="text-xs text-slate-500 font-semibold">Calculated for 2.5 Hectares</div>
+                  </div>
+                </div>
+                <span id="gauge-status-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">High Reliability</span>
+              </div>
+
+              <!-- Big Yield Number -->
+              <div class="my-6">
+                <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider block mb-1" data-i18n="resYieldHeading">Predicted Yield</span>
+                <div class="flex items-baseline space-x-2">
+                  <span id="res-yield-value" class="text-5xl sm:text-6xl font-black text-slate-900 dark:text-white font-display">4.85</span>
+                  <span class="text-xl sm:text-2xl font-bold text-emerald-700 dark:text-emerald-400" data-i18n="resTonsPerHa">Tons / Hectare</span>
+                </div>
+                <div id="res-yield-acre" class="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">≈ 1.96 Tons / Acre</div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-200 dark:border-emerald-900 mb-6">
+                <div class="text-xs text-slate-500 dark:text-slate-400" data-i18n="resTotalYield">Total Estimated Production</div>
+                <div id="res-total-production" class="text-xl font-black text-emerald-800 dark:text-emerald-300">12.13 Tons (121 Quintals)</div>
+              </div>
+            </div>
+
+            <!-- Gauge Meter Component (SVG Gauge) -->
+            <div class="border-t border-emerald-200 dark:border-emerald-900/60 pt-6">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-600 dark:text-slate-300" data-i18n="resConfidence">Confidence Score</span>
+                <span id="gauge-score-text" class="text-sm font-black text-emerald-700 dark:text-emerald-400">94%</span>
+              </div>
+              
+              <!-- SVG Semi-Circular Gauge Meter -->
+              <div class="relative w-full max-w-[260px] mx-auto h-[130px] overflow-hidden flex items-end justify-center">
+                <svg viewBox="0 0 200 110" class="w-full h-full">
+                  <!-- Red Zone (0 - 50%) -->
+                  <path d="M 20 100 A 80 80 0 0 1 65 35" fill="none" stroke="#f43f5e" stroke-width="16" stroke-linecap="round"/>
+                  <!-- Yellow Zone (50 - 75%) -->
+                  <path d="M 68 32 A 80 80 0 0 1 125 30" fill="none" stroke="#f59e0b" stroke-width="16"/>
+                  <!-- Green Zone (75 - 100%) -->
+                  <path d="M 128 32 A 80 80 0 0 1 180 100" fill="none" stroke="#22c55e" stroke-width="16" stroke-linecap="round"/>
+                  <!-- Needle Anchor Hub -->
+                  <circle cx="100" cy="100" r="8" fill="#1e293b"/>
+                  <!-- Rotating Needle -->
+                  <line id="gauge-needle" x1="100" y1="100" x2="100" y2="35" stroke="#0f172a" stroke-width="4" stroke-linecap="round" style="transform-origin: 100px 100px; transform: rotate(70deg); transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);"/>
+                </svg>
+                <div class="absolute bottom-0 text-[10px] font-bold text-slate-400 flex justify-between w-full px-2">
+                  <span>0%</span>
+                  <span>50%</span>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Card 2: Financial & Market Estimates -->
+          <div class="lg:col-span-5 rounded-3xl bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="resIncomeHeading">Financial Projections</h3>
+                <span class="text-2xl">💰</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Calculated using live APMC Mandi rates and ICAR production cost benchmarks.</p>
+
+              <!-- Net Profit Highlight -->
+              <div class="p-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-600 text-white shadow-lg shadow-emerald-700/20 mb-6">
+                <span class="text-xs font-semibold opacity-90 block" data-i18n="resEstimatedProfit">Estimated Net Profit</span>
+                <div id="res-net-profit" class="text-3xl sm:text-4xl font-black font-display my-1">₹3,48,500</div>
+                <div id="res-profit-margin" class="text-xs font-bold text-emerald-100">Profit Margin: 72%</div>
+              </div>
+
+              <!-- Financial Breakdown Items -->
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700">
+                  <span class="text-slate-500 dark:text-slate-400" data-i18n="resEstimatedIncome">Gross Market Revenue</span>
+                  <span id="res-gross-income" class="font-bold text-slate-900 dark:text-white">₹4,84,000</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700">
+                  <span class="text-slate-500 dark:text-slate-400" data-i18n="resEstimatedCost">Estimated Production Cost</span>
+                  <span id="res-estimated-cost" class="font-bold text-rose-600 dark:text-rose-400">₹1,35,500</span>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                  <span class="text-slate-500 dark:text-slate-400" data-i18n="resMarketPrice">Current Mandi Modal Price</span>
+                  <span id="res-mandi-rate" class="font-bold text-emerald-600 dark:text-emerald-400">₹2,475 / Qtl (MSP: ₹2,425)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+              <a href="#schemes" class="text-xs font-bold text-emerald-600 hover:underline flex items-center justify-between">
+                <span>Protect crop with PMFBY Insurance</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- AI Recommendations Below Prediction -->
+        <div class="rounded-3xl bg-slate-50 dark:bg-slate-800/60 p-6 sm:p-8 border border-emerald-200 dark:border-emerald-900">
+          <div class="flex items-center space-x-3 mb-6">
+            <span class="text-3xl">🤖</span>
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="resRecommendations">AI Actionable Recommendations</h3>
+              <p class="text-xs text-slate-500">Specific agronomic practices to achieve and exceed this predicted harvest</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <!-- Rec 1: Fertilizer -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div class="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm mb-1.5">
+                <span>🌱</span>
+                <span data-i18n="recFertilizer">Best Fertilizer Schedule</span>
+              </div>
+              <p id="rec-fertilizer-text" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Rec 2: Irrigation -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div class="flex items-center space-x-2 text-blue-700 dark:text-blue-400 font-bold text-sm mb-1.5">
+                <span>💧</span>
+                <span data-i18n="recIrrigation">Irrigation Frequency</span>
+              </div>
+              <p id="rec-irrigation-text" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Rec 3: Disease Prevention -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div class="flex items-center space-x-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
+                <span>🛡️</span>
+                <span data-i18n="recDisease">Disease Prevention Tips</span>
+              </div>
+              <p id="rec-disease-text" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Rec 4: Harvest Time -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 font-bold text-sm mb-1.5">
+                <span>🚜</span>
+                <span data-i18n="recHarvest">Optimal Harvest Time</span>
+              </div>
+              <p id="rec-harvest-text" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Rec 5: Best Storage -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm md:col-span-2 lg:col-span-2">
+              <div class="flex items-center space-x-2 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-1.5">
+                <span>🏬</span>
+                <span data-i18n="recStorage">Best Storage Method</span>
+              </div>
+              <p id="rec-storage-text" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Weather Page / Section -->
+    <section id="weather" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-extrabold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
+              Meteorological Guidance
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="weatherTitle">
+              Local Agricultural Weather
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="weatherSubtitle">
+              IMD aligned weather forecast with micro-advisories for spray and sowing
+            </p>
+          </div>
+
+          <!-- Weather Search -->
+          <div class="flex items-center space-x-2 w-full md:w-auto">
+            <input type="text" id="weather-search-input" placeholder="Search District (e.g. Ludhiana, Nashik)..." class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500 w-full sm:w-64">
+            <button id="btn-weather-search" type="button" class="p-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-colors shadow-sm">
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Rain Alert Banner -->
+        <div class="mb-8 p-4 rounded-2xl bg-amber-500/10 border-2 border-amber-500/30 flex items-start space-x-3 text-amber-900 dark:text-amber-200">
+          <span class="text-2xl mt-0.5">⚠️</span>
+          <div>
+            <h4 class="font-bold text-sm mb-0.5" data-i18n="rainAlertTitle">Agricultural Weather Alert</h4>
+            <p class="text-xs leading-relaxed">
+              Light scattered rainfall expected in North Indian plains in 48 hours. Farmers are advised to postpone nitrogenous fertilizer top dressing and avoid unnecessary pesticide sprays until canopy dries.
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Weather Hero Box -->
+        <div class="rounded-3xl bg-gradient-to-br from-blue-900 via-emerald-950 to-slate-900 text-white p-8 shadow-2xl mb-8 relative overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+            
+            <div class="md:col-span-6 space-y-3">
+              <div id="weather-city-name" class="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
+                📍 Ludhiana, Punjab, India
+              </div>
+              <div class="flex items-center space-x-4">
+                <span class="text-6xl">🌤️</span>
+                <div>
+                  <div id="weather-temp-main" class="text-5xl font-black font-display">26°C</div>
+                  <div class="text-sm font-semibold text-emerald-200">Partly Cloudy • Gentle Breeze</div>
+                </div>
+              </div>
+              <div class="text-xs text-slate-300">
+                Feels like 27°C • Dew point: 14°C • Visibility: 8 km
+              </div>
+            </div>
+
+            <div class="md:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
+                <span class="text-xs text-emerald-200 block">Rainfall</span>
+                <span id="weather-rain-chance" class="text-sm font-bold block mt-1">15% (0.5mm)</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
+                <span class="text-xs text-emerald-200 block" data-i18n="windSpeed">Wind Speed</span>
+                <span id="weather-wind" class="text-sm font-bold block mt-1">11 km/h W</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
+                <span class="text-xs text-emerald-200 block" data-i18n="sunrise">Sunrise</span>
+                <span class="text-sm font-bold block mt-1">06:24 AM</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
+                <span class="text-xs text-emerald-200 block" data-i18n="sunset">Sunset</span>
+                <span class="text-sm font-bold block mt-1">05:48 PM</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 7-Day Agricultural Forecast -->
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4" data-i18n="weeklyForecast">7-Day Farm Forecast</h3>
+          <div id="weekly-forecast-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            <!-- Dynamically populated from JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Government Schemes & Subsidies -->
+    <section id="schemes" class="py-20 bg-[#fbfbf8] dark:bg-[#0b130e] border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
+            🏛️ Sarkari Yojana
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="schemesTitle">
+            Government Schemes & Subsidies
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1" data-i18n="schemesSubtitle">
+            Direct benefit transfers and insurance schemes available for your farm
+          </p>
+        </div>
+
+        <!-- Schemes Cards Grid -->
+        <div id="schemes-card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated from agriData.schemes -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Crop Knowledge Library -->
+    <section id="croplib" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider mb-1">
+              Cultivation Catalog
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="libTitle">
+              Agricultural Crop Library
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="libSubtitle">
+              Explore cultivation practices, soil requirements, and disease management
+            </p>
+          </div>
+
+          <div class="w-full md:w-72">
+            <input type="text" id="crop-library-search" placeholder="Search crops (Wheat, Rice, Cotton)..." class="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500" data-i18n="searchCropPlaceholder">
+          </div>
+        </div>
+
+        <div id="crop-library-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Dynamically populated -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AI Crop Doctor (Leaf Disease Detection) -->
+    <section id="doctor" class="py-20 bg-[#f8faf7] dark:bg-[#0d1712] border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-950/80 text-rose-800 dark:text-rose-300 text-xs font-bold uppercase tracking-wider mb-2">
+            🔬 AI Crop Pathology
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="doctorTitle">
+            AI Crop Disease Doctor
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1" data-i18n="doctorSubtitle">
+            Upload or photograph an affected leaf for instant AI diagnosis and cures
+          </p>
+        </div>
+
+        <!-- Leaf Upload Box -->
+        <div class="rounded-3xl bg-white dark:bg-slate-800 border-2 border-dashed border-emerald-300 dark:border-emerald-700 p-8 text-center shadow-lg relative cursor-pointer hover:bg-emerald-50/50 transition-colors">
+          <input type="file" id="disease-file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+          <div class="text-5xl mb-3">📸</div>
+          <div class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1" data-i18n="uploadPrompt">
+            Drag & drop leaf photo here, or click to upload
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Supports JPG, PNG from smartphone camera • Instant analysis</p>
+        </div>
+
+        <!-- Sample Leaf Test Presets -->
+        <div class="mt-6 text-center">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-3" data-i18n="samplePrompt">
+            Or click a sample crop leaf to test:
+          </span>
+          <div class="flex flex-wrap justify-center gap-2">
+            <button type="button" class="btn-sample-disease px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm transition-all" data-disease-id="rice-blast">
+              🌾 Test: Rice Leaf Blast
+            </button>
+            <button type="button" class="btn-sample-disease px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm transition-all" data-disease-id="wheat-rust">
+              🌾 Test: Wheat Stripe Rust
+            </button>
+            <button type="button" class="btn-sample-disease px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm transition-all" data-disease-id="tomato-blight">
+              🍅 Test: Tomato Early Blight
+            </button>
+            <button type="button" class="btn-sample-disease px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm transition-all" data-disease-id="cotton-bollworm">
+              ☁️ Test: Cotton Pink Bollworm
+            </button>
+          </div>
+        </div>
+
+        <!-- Disease Diagnostic Result Card -->
+        <div id="disease-result-card" class="mt-8 hidden">
+          <!-- Populated from JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Live APMC Mandi Prices -->
+    <section id="mandi" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-extrabold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-1">
+              Market Intelligence
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="mandiTitle">
+              Live APMC Mandi Prices
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="mandiSubtitle">
+              Real-time market rates and MSP comparisons across agricultural markets
+            </p>
+          </div>
+        </div>
+
+        <!-- Mandi Table -->
+        <div class="rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-xs uppercase font-extrabold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
+                <tr>
+                  <th class="py-3 px-4">Agricultural Mandi</th>
+                  <th class="py-3 px-4">Commodity</th>
+                  <th class="py-3 px-4">Modal Price (₹/Qtl)</th>
+                  <th class="py-3 px-4">Govt MSP</th>
+                  <th class="py-3 px-4 text-right">Daily Change</th>
+                </tr>
+              </thead>
+              <tbody id="mandi-prices-tbody">
+                <!-- Dynamically populated from agriData.mandiPrices -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Previous Predictions History & Export -->
+    <section id="history" class="py-20 bg-[#fbfbf8] dark:bg-[#0b130e] border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider mb-1">
+              Farmer Archive
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="historyTitle">
+              Farmer Prediction Records
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="historySubtitle">
+              Review, filter, and download your past crop assessments
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <input type="text" id="history-search-input" placeholder="Search by crop, district..." class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-emerald-500 w-48">
+            <button id="btn-export-csv" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center space-x-1.5 transition-colors shadow-sm">
+              <span data-i18n="btnExportCsv">📊 Download Excel (CSV)</span>
+            </button>
+            <button onclick="window.print()" type="button" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center space-x-1.5 transition-colors shadow-sm">
+              <span data-i18n="btnExportPdf">📄 Print / PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Desktop Table View -->
+        <div class="hidden sm:block rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50 dark:bg-slate-900 text-xs uppercase font-extrabold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
+                <tr>
+                  <th class="py-3.5 px-4">Date</th>
+                  <th class="py-3.5 px-4">Crop</th>
+                  <th class="py-3.5 px-4">Location</th>
+                  <th class="py-3.5 px-4">Area</th>
+                  <th class="py-3.5 px-4">Predicted Yield</th>
+                  <th class="py-3.5 px-4">Net Profit</th>
+                  <th class="py-3.5 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <!-- Dynamically populated from LocalStorage -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mobile Card View -->
+        <div id="history-mobile-cards" class="sm:hidden">
+          <!-- Dynamically populated for small screens -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Visual Analytics Charts (Chart.js) -->
+    <section id="analytics" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
+            📊 Modern Charts
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="analyticsTitle">
+            Yield & Farm Analytics
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1" data-i18n="analyticsSubtitle">
+            Simple, easy-to-understand visualizations without complex jargon
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Chart 1: Monthly Prediction Trend -->
+          <div class="glass-card p-6">
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1" data-i18n="chartMonthly">Seasonal Production Trend</h3>
+            <p class="text-xs text-slate-500 mb-4">Average historical yields across months</p>
+            <div class="h-64 relative">
+              <canvas id="chart-monthly-trend"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Crop Profitability Comparison -->
+          <div class="glass-card p-6">
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1" data-i18n="chartCropComp">Crop Profitability Comparison</h3>
+            <p class="text-xs text-slate-500 mb-4">Net profit comparison per hectare</p>
+            <div class="h-64 relative flex items-center justify-center">
+              <canvas id="chart-crop-comparison"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Rainfall vs Yield Response Curve -->
+          <div class="glass-card p-6">
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1" data-i18n="chartRainYield">Rainfall vs. Yield Correlation</h3>
+            <p class="text-xs text-slate-500 mb-4">Optimal moisture sweet-spot</p>
+            <div class="h-64 relative">
+              <canvas id="chart-rainfall-yield"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About Section (How AI Works in Simple Farmer Terms) -->
+    <section id="about" class="py-20 bg-[#fbfbf8] dark:bg-[#0b130e] border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
+            🌱 Pure Simplicity
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="aboutTitle">
+            How AI Predicts Crop Yield
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1" data-i18n="aboutSubtitle">
+            Simple explanation without complex technical jargon
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="glass-card p-6 text-center">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-2xl flex items-center justify-center mx-auto mb-4">
+              📚
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">1. 30 Years of Farm Data</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Just like a wise village elder remembers past good and bad harvests, our AI analyzes historical seasonal records from ICAR and agricultural universities.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 text-center">
+            <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 text-2xl flex items-center justify-center mx-auto mb-4">
+              🌦️
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">2. Soil & Weather Matching</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              It compares your exact district's rainfall, temperature, and soil type to determine how happily your crop seeds will germinate and mature.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 text-center">
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-2xl flex items-center justify-center mx-auto mb-4">
+              💰
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">3. Precise Harvest & Income</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              It calculates the expected quintals of harvest and current mandi prices so you can plan fertilizer costs, irrigation, and profits before sowing.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact & Farmer Help Section -->
+    <section id="contact" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
+            🤝 24/7 Sahayata
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display" data-i18n="contactTitle">
+            Farmer Help & Support
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1" data-i18n="contactSubtitle">
+            We are here to assist every Annadata across India
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Contact Methods & Helpline -->
+          <div class="lg:col-span-5 space-y-4">
+            
+            <div class="p-6 rounded-3xl bg-gradient-nature text-white shadow-xl">
+              <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-200 mb-1">National Helpline</div>
+              <h3 class="text-2xl font-black font-display mb-2">Kisan Call Centre</h3>
+              <p class="text-xs text-emerald-100 mb-4">Government of India toll-free advisory service available in 22 official languages.</p>
+              <a href="tel:18001801551" class="inline-flex items-center space-x-2 px-5 py-3 rounded-2xl bg-white text-emerald-900 font-extrabold text-base hover:bg-emerald-50 transition-colors shadow-md">
+                <span>📞 Call 1800-180-1551</span>
+              </a>
+            </div>
+
+            <div class="glass-card p-6">
+              <h4 class="font-bold text-slate-800 dark:text-white mb-2">💬 WhatsApp Agri Advice</h4>
+              <p class="text-xs text-slate-500 mb-4">Send a WhatsApp message to receive immediate crop advice on your smartphone.</p>
+              <a href="https://wa.me/9118001801551?text=Hello%20Smart%20Farming%20AI%2C%20I%20need%20assistance%20with%20my%20crop." target="_blank" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-sm">
+                <span data-i18n="whatsappBtn">💬 Chat on WhatsApp</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Farmer Enquiry Form -->
+          <div class="lg:col-span-7 glass-card p-8">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Send Direct Enquiry to Agronomist</h3>
+            <form onsubmit="event.preventDefault(); showToast('Your enquiry has been submitted! An agronomist will contact you.', 'success'); this.reset();" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1">Farmer Name</label>
+                  <input type="text" required placeholder="e.g. Ramesh Kumar" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1">Mobile Number</label>
+                  <input type="tel" required placeholder="10-digit mobile number" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500">
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1">State & District</label>
+                <input type="text" placeholder="e.g. Ludhiana, Punjab" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1">Describe Farm Question / Problem</label>
+                <textarea rows="3" required placeholder="Ask about soil testing, yellow leaves, urea dosage, or subsidy application..." class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+              </div>
+              <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all">
+                Submit Farm Enquiry →
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <span class="text-3xl">🌾</span>
+            <span class="text-xl font-extrabold text-white font-display">Smart Farming AI</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            AI Powered Crop Yield Prediction & Farming Assistant designed for Indian Annadatas. Empowering sustainable agriculture through accurate climatic prediction.
+          </p>
+          <div class="text-xs font-semibold text-emerald-400">
+            Predict Better. Grow Better. Earn Better.
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="font-bold text-white text-sm mb-4">Quick Navigation</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#hero" class="hover:text-emerald-400 transition-colors">Home</a></li>
+            <li><a href="#prediction-wizard" class="hover:text-emerald-400 transition-colors">Crop Yield Prediction</a></li>
+            <li><a href="#dashboard" class="hover:text-emerald-400 transition-colors">Farmer Dashboard</a></li>
+            <li><a href="#weather" class="hover:text-emerald-400 transition-colors">Local Weather & Forecast</a></li>
+            <li><a href="#schemes" class="hover:text-emerald-400 transition-colors">Government Subsidies</a></li>
+            <li><a href="#doctor" class="hover:text-emerald-400 transition-colors">AI Crop Disease Doctor</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Supported Languages -->
+        <div>
+          <h4 class="font-bold text-white text-sm mb-4">Supported Languages</h4>
+          <div class="flex flex-wrap gap-1.5 text-xs">
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">English</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">हिंदी</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">मराठी</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">தமிழ்</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">తెలుగు</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">ಕನ್ನಡ</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">ગુજરાતી</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">ਪੰਜਾਬੀ</span>
+            <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">বাংলা</span>
+          </div>
+        </div>
+
+        <!-- Col 4: Project & AgriTech Credits -->
+        <div>
+          <h4 class="font-bold text-white text-sm mb-4">AgriTech & College Project</h4>
+          <p class="text-xs text-slate-400 leading-relaxed mb-3">
+            Developed with modern web technologies, responsive glassmorphism design, and Web Speech API. Dedicated to Indian farmers.
+          </p>
+          <div class="text-[11px] text-slate-500">
+            Privacy Policy • Terms of Service • Agri Data Disclaimer
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          © 2026 Smart Farming AI. Dedicated to the Prosperity of Indian Farmers.
+        </div>
+        <div class="flex space-x-4">
+          <a href="#about" class="hover:underline">About Project</a>
+          <a href="#contact" class="hover:underline">Support</a>
+          <a href="tel:18001801551" class="hover:underline text-emerald-400 font-bold">Toll Free: 1800-180-1551</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating AI Chatbot ("🌾 Kisan AI Sahayak") -->
+  <div class="fixed bottom-6 right-6 z-50 no-print">
+    
+    <!-- Floating Circular Bubble Trigger -->
+    <button id="chatbot-bubble" title="Open Kisan AI Sahayak Chatbot" class="w-16 h-16 rounded-full bg-gradient-nature hover:bg-emerald-700 text-white text-3xl flex items-center justify-center shadow-2xl shadow-emerald-900/40 hover:scale-110 transition-transform relative focus:outline-none">
+      🌾
+      <!-- Pulsating Green Ring -->
+      <span class="absolute inset-0 rounded-full border-2 border-emerald-400 animate-ping opacity-75"></span>
+    </button>
+
+    <!-- Chatbot Window Container -->
+    <div id="chatbot-modal" class="hidden absolute bottom-20 right-0 w-[92vw] sm:w-96 rounded-3xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800 shadow-2xl overflow-hidden chat-window flex flex-col">
+      
+      <!-- Chat Header -->
+      <div class="bg-gradient-nature p-4 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-xl">
+            👨‍🌾
+          </div>
+          <div>
+            <h4 class="font-bold text-sm" data-i18n="chatTitle">🌾 Kisan AI Sahayak</h4>
+            <div class="text-[10px] text-emerald-200" data-i18n="chatSubtitle">Your 24/7 Voice & Chat Agri Expert</div>
+          </div>
+        </div>
+        <button id="chatbot-close-btn" class="p-1.5 rounded-lg hover:bg-white/20 text-white font-bold text-base">
+          ✕
+        </button>
+      </div>
+
+      <!-- Quick Preset Suggestions Chips -->
+      <div class="p-2.5 bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-800 flex gap-1.5 overflow-x-auto text-[11px] font-semibold whitespace-nowrap">
+        <button type="button" class="chatbot-preset-chip px-2.5 py-1 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          Urea dosage?
+        </button>
+        <button type="button" class="chatbot-preset-chip px-2.5 py-1 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          Yellow leaves?
+        </button>
+        <button type="button" class="chatbot-preset-chip px-2.5 py-1 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          When to harvest?
+        </button>
+        <button type="button" class="chatbot-preset-chip px-2.5 py-1 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          PM-KISAN ₹6000?
+        </button>
+      </div>
+
+      <!-- Messages Scroll Area -->
+      <div id="chatbot-messages" class="p-4 h-72 overflow-y-auto space-y-3">
+        <!-- Initial Bot Welcome -->
+        <div class="flex justify-start">
+          <div class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] text-xs leading-relaxed shadow-sm">
+            🙏 <strong>Namaste Farmer Friend!</strong> I am your AI Kisan Sahayak. Ask me any question regarding crop yield, fertilizers, yellowing leaves, harvest timing, or government subsidies!
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="p-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-2">
+        <input type="text" id="chatbot-input" placeholder="Ask anything in English or Hindi..." class="flex-grow p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-emerald-500" data-i18n="chatPlaceholder">
+        <button id="chatbot-send-btn" type="button" class="p-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-colors">
+          ➤
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Government Scheme Eligibility Modal -->
+  <div id="scheme-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-emerald-200 dark:border-emerald-800 space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
+        <h3 id="scheme-modal-title" class="text-lg font-bold text-slate-900 dark:text-white">Scheme Name</h3>
+        <button onclick="document.getElementById('scheme-modal').classList.add('hidden')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 font-bold">✕</button>
+      </div>
+      <div id="scheme-modal-body">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end space-x-2">
+        <button onclick="document.getElementById('scheme-modal').classList.add('hidden')" class="px-4 py-2 rounded-xl border text-xs font-bold text-slate-600">Close</button>
+        <button id="scheme-modal-apply-btn" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">Go to Official Portal →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crop Detail Profile Modal -->
+  <div id="crop-detail-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-emerald-200 dark:border-emerald-800 space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
+        <h3 id="crop-detail-title" class="text-lg font-bold text-slate-900 dark:text-white">Crop Profile</h3>
+        <button onclick="document.getElementById('crop-detail-modal').classList.add('hidden')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 font-bold">✕</button>
+      </div>
+      <div id="crop-detail-body">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="pt-2 flex justify-end">
+        <button onclick="document.getElementById('crop-detail-modal').classList.add('hidden')" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2 pointer-events-none no-print"></div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/translations.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/yieldEngine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
