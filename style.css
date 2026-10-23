@@ -1,0 +1,259 @@
+/* Smart Farming AI - Modern AgriTech Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', var(--font-primary);
+  
+  /* AgriTech Nature Color Palette */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #166534;
+  --color-primary-900: #14532d;
+  --color-primary-950: #052e16;
+
+  /* Earth & Harvest Accents */
+  --color-earth-50: #fffbeb;
+  --color-earth-100: #fef3c7;
+  --color-earth-200: #fde68a;
+  --color-earth-500: #f59e0b;
+  --color-earth-700: #b45309;
+  --color-earth-900: #78350f;
+
+  /* Neutrals */
+  --bg-page: #fbfbf8;
+  --bg-surface: #ffffff;
+  --border-subtle: rgba(22, 101, 52, 0.12);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  
+  --radius-card: 20px;
+  --shadow-soft: 0 10px 25px -5px rgba(20, 83, 45, 0.07), 0 8px 10px -6px rgba(20, 83, 45, 0.04);
+  --shadow-hover: 0 20px 35px -10px rgba(20, 83, 45, 0.14), 0 10px 15px -5px rgba(20, 83, 45, 0.08);
+}
+
+.dark {
+  --bg-page: #0b130e;
+  --bg-surface: #132219;
+  --border-subtle: rgba(74, 222, 128, 0.18);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.7);
+}
+
+/* High Contrast Mode for Farmer Accessibility */
+.high-contrast {
+  --text-main: #000000 !important;
+  --border-subtle: #000000 !important;
+  font-size: 110% !important;
+}
+
+.dark.high-contrast {
+  --text-main: #ffffff !important;
+  --border-subtle: #ffffff !important;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.dark .glass-card {
+  background: rgba(19, 34, 25, 0.85);
+  border-color: rgba(74, 222, 128, 0.15);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+/* Nature Gradients */
+.bg-gradient-nature {
+  background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+}
+
+.bg-gradient-warm-nature {
+  background: linear-gradient(135deg, #052e16 0%, #166534 60%, #b45309 100%);
+}
+
+.bg-gradient-subtle {
+  background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.08), transparent 40%);
+}
+
+.dark .bg-gradient-subtle {
+  background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 45%),
+              radial-gradient(circle at bottom left, rgba(20, 83, 45, 0.15), transparent 45%);
+}
+
+/* Custom Sliders */
+input[type="range"].agri-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.dark input[type="range"].agri-slider {
+  background: #1e293b;
+}
+
+input[type="range"].agri-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #16a34a;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"].agri-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #15803d;
+}
+
+/* Pulsing Badge Animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite ease-in-out;
+}
+
+@keyframes float-leaf {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float-leaf 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}
+
+/* Step Wizard transitions */
+.wizard-step {
+  display: none;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wizard-step.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Custom Checkbox / Radio cards */
+.selectable-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.selectable-card:hover {
+  border-color: #86efac;
+  background-color: rgba(240, 253, 244, 0.6);
+}
+
+.selectable-card.selected {
+  border-color: #16a34a;
+  background-color: #f0fdf4;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.dark .selectable-card:hover {
+  border-color: #166534;
+  background-color: rgba(22, 101, 52, 0.2);
+}
+
+.dark .selectable-card.selected {
+  border-color: #4ade80;
+  background-color: rgba(22, 101, 52, 0.35);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+}
+
+/* Chatbot Widget Styles */
+.chat-window {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(22, 163, 74, 0.15);
+}
+
+/* Print Stylesheet for Yield Report PDF */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, footer, nav, #chatbot-bubble, #chatbot-modal, .no-print {
+    display: none !important;
+  }
+  #prediction-result-modal, #prediction-result-view {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
